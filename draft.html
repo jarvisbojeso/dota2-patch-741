@@ -608,8 +608,8 @@ body {
 
         <!-- Team selector -->
         <div class="team-selector">
-            <button class="team-btn active-radiant" id="btn-radiant" onclick="setTeam('radiant')">☀️ Radiant</button>
-            <button class="team-btn" id="btn-dire" onclick="setTeam('dire')">🌙 Dire</button>
+            <button class="team-btn active-radiant" id="btn-radiant">☀️ Radiant</button>
+            <button class="team-btn" id="btn-dire">🌙 Dire</button>
         </div>
 
         <!-- Filters -->
@@ -695,9 +695,39 @@ let showChanged = false;
 // Team selection
 function setTeam(team) {
     activeTeam = team;
-    document.getElementById('btn-radiant').className = 'team-btn' + (team === 'radiant' ? ' active-radiant' : '');
-    document.getElementById('btn-dire').className = 'team-btn' + (team === 'dire' ? ' active-dire' : '');
+    var btnR = document.getElementById('btn-radiant');
+    var btnD = document.getElementById('btn-dire');
+    btnR.className = 'team-btn' + (team === 'radiant' ? ' active-radiant' : '');
+    btnD.className = 'team-btn' + (team === 'dire' ? ' active-dire' : '');
+    // Also highlight the active team panel
+    document.querySelector('.team-radiant').style.boxShadow = team === 'radiant' ? '0 0 0 2px var(--radiant)' : 'none';
+    document.querySelector('.team-dire').style.boxShadow = team === 'dire' ? '0 0 0 2px var(--dire)' : 'none';
 }
+
+// Also allow clicking empty slots to switch team
+document.querySelectorAll('.team-slot').forEach(function(slot) {
+    slot.addEventListener('click', function() {
+        var team = this.dataset.team;
+        if (team && !this.classList.contains('filled')) {
+            setTeam(team);
+        }
+    });
+});
+
+// Button event listeners (more reliable than inline onclick)
+document.getElementById('btn-radiant').addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setTeam('radiant');
+});
+document.getElementById('btn-dire').addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    setTeam('dire');
+});
+
+// Init visual state
+setTeam('radiant');
 
 // Pick hero
 document.getElementById('hero-grid').addEventListener('click', e => {

@@ -686,6 +686,246 @@ body {
     line-height: 1.5;
 }
 
+/* Hero tooltip */
+.hero-tooltip {
+    display: none;
+    position: fixed;
+    z-index: 200;
+    background: #1a1f2e;
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    padding: 14px 16px;
+    width: 280px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    pointer-events: none;
+    font-size: 0.82em;
+    line-height: 1.6;
+}
+
+.hero-tooltip.visible {
+    display: block;
+}
+
+.tt-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.tt-img {
+    width: 56px;
+    height: 32px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.tt-name {
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+.tt-meta {
+    font-size: 0.85em;
+    color: var(--text-muted);
+}
+
+.tt-verdict {
+    display: inline-block;
+    font-size: 0.7em;
+    font-weight: 800;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+    vertical-align: middle;
+}
+
+.tt-section {
+    margin: 6px 0;
+}
+
+.tt-section-label {
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 2px;
+}
+
+.tt-matchup-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 0;
+}
+
+.tt-matchup-row img {
+    width: 28px;
+    height: 16px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+.tt-matchup-wr {
+    margin-left: auto;
+    font-weight: 700;
+}
+
+.tt-matchup-wr.good { color: var(--green); }
+.tt-matchup-wr.bad { color: var(--red); }
+
+.tt-reason {
+    font-size: 0.85em;
+    color: var(--text-dim);
+    margin-left: 34px;
+    font-style: italic;
+}
+
+.tt-score-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    margin: 6px 0 2px;
+    overflow: hidden;
+}
+
+.tt-score-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.2s;
+}
+
+.tt-score-label {
+    font-size: 0.75em;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Suggest bar */
+.suggest-bar {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 14px;
+    overflow: hidden;
+}
+
+.suggest-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(63,185,80,0.05);
+}
+
+.suggest-title {
+    font-weight: 700;
+    font-size: 0.9em;
+}
+
+.suggest-subtitle {
+    font-size: 0.78em;
+    color: var(--text-muted);
+    flex: 1;
+}
+
+.suggest-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1em;
+    cursor: pointer;
+    padding: 2px 6px;
+}
+
+.suggest-close:hover { color: var(--text); }
+
+.suggest-list {
+    display: flex;
+    gap: 6px;
+    padding: 10px 14px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.suggest-card {
+    flex-shrink: 0;
+    width: 100px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+}
+
+.suggest-card:hover {
+    border-color: var(--green);
+    transform: translateY(-2px);
+}
+
+.suggest-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    display: block;
+}
+
+.suggest-card-name {
+    font-size: 0.68em;
+    font-weight: 600;
+    padding: 3px 4px 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.suggest-card-detail {
+    font-size: 0.62em;
+    color: var(--text-muted);
+    padding: 0 4px 4px;
+    line-height: 1.4;
+}
+
+.suggest-card-score {
+    font-size: 0.65em;
+    font-weight: 700;
+    color: var(--green);
+    padding: 0 4px 5px;
+}
+
+/* Winrate pill on hero grid */
+.pick-hero .wr-pill {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.55em;
+    font-weight: 800;
+    padding: 1px 5px;
+    border-radius: 3px;
+    white-space: nowrap;
+    z-index: 3;
+    pointer-events: none;
+    letter-spacing: 0.3px;
+}
+
+.wr-pill.good-pill {
+    background: rgba(63,185,80,0.9);
+    color: #000;
+}
+
+.wr-pill.bad-pill {
+    background: rgba(248,81,73,0.85);
+    color: #fff;
+}
+
 /* Reset all animation */
 .flash { animation: flash 0.3s ease; }
 @keyframes flash {
@@ -759,6 +999,14 @@ body {
         </div>
 
         <!-- Hero Grid -->
+        <div id="suggest-bar" class="suggest-bar" style="display:none">
+    <div class="suggest-header">
+        <span class="suggest-title">🎯 Gode picks mod fjenden</span>
+        <span class="suggest-subtitle" id="suggest-subtitle"></span>
+        <button class="suggest-close" onclick="document.getElementById('suggest-bar').style.display='none'">✕</button>
+    </div>
+    <div class="suggest-list" id="suggest-list"></div>
+</div>
         <div class="hero-picker-grid" id="hero-grid">
             <div class="pick-hero" data-id="102" data-name="abaddon" data-attr="all" data-attack="melee" data-roles="support carry durable" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/abaddon.png" alt="Abaddon" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Abaddon</span></div><div class="pick-hero" data-id="73" data-name="alchemist" data-attr="str" data-attack="melee" data-roles="carry support durable disabler initiator nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/alchemist.png" alt="Alchemist" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Alchemist</span></div><div class="pick-hero" data-id="68" data-name="ancient apparition" data-attr="int" data-attack="ranged" data-roles="support disabler nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/ancient_apparition.png" alt="Ancient Apparition" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Ancient Apparition</span></div><div class="pick-hero" data-id="1" data-name="anti-mage" data-attr="agi" data-attack="melee" data-roles="carry escape nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/antimage.png" alt="Anti-Mage" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Anti-Mage</span></div><div class="pick-hero" data-id="113" data-name="arc warden" data-attr="all" data-attack="ranged" data-roles="carry escape nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/arc_warden.png" alt="Arc Warden" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Arc Warden</span></div><div class="pick-hero" data-id="2" data-name="axe" data-attr="str" data-attack="melee" data-roles="initiator durable disabler carry" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/axe.png" alt="Axe" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Axe</span></div><div class="pick-hero" data-id="3" data-name="bane" data-attr="all" data-attack="ranged" data-roles="support disabler nuker durable" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/bane.png" alt="Bane" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Bane</span></div><div class="pick-hero" data-id="65" data-name="batrider" data-attr="all" data-attack="ranged" data-roles="initiator disabler escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/batrider.png" alt="Batrider" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Batrider</span></div><div class="pick-hero" data-id="38" data-name="beastmaster" data-attr="all" data-attack="melee" data-roles="initiator disabler durable nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/beastmaster.png" alt="Beastmaster" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Beastmaster</span></div><div class="pick-hero" data-id="4" data-name="bloodseeker" data-attr="agi" data-attack="melee" data-roles="carry disabler nuker initiator" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/bloodseeker.png" alt="Bloodseeker" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Bloodseeker</span></div><div class="pick-hero" data-id="62" data-name="bounty hunter" data-attr="agi" data-attack="melee" data-roles="escape nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/bounty_hunter.png" alt="Bounty Hunter" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Bounty Hunter</span></div><div class="pick-hero" data-id="78" data-name="brewmaster" data-attr="all" data-attack="melee" data-roles="carry initiator durable disabler nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/brewmaster.png" alt="Brewmaster" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Brewmaster</span></div><div class="pick-hero" data-id="99" data-name="bristleback" data-attr="str" data-attack="melee" data-roles="carry durable initiator nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/bristleback.png" alt="Bristleback" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Bristleback</span></div><div class="pick-hero" data-id="61" data-name="broodmother" data-attr="agi" data-attack="melee" data-roles="carry pusher escape nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/broodmother.png" alt="Broodmother" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Broodmother</span></div><div class="pick-hero" data-id="96" data-name="centaur warrunner" data-attr="str" data-attack="melee" data-roles="durable initiator disabler nuker escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/centaur.png" alt="Centaur Warrunner" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Centaur Warrunner</span></div><div class="pick-hero" data-id="81" data-name="chaos knight" data-attr="str" data-attack="melee" data-roles="carry disabler durable pusher initiator" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/chaos_knight.png" alt="Chaos Knight" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Chaos Knight</span></div><div class="pick-hero" data-id="66" data-name="chen" data-attr="int" data-attack="ranged" data-roles="support pusher" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/chen.png" alt="Chen" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Chen</span></div><div class="pick-hero" data-id="56" data-name="clinkz" data-attr="agi" data-attack="ranged" data-roles="carry escape pusher" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/clinkz.png" alt="Clinkz" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Clinkz</span></div><div class="pick-hero" data-id="51" data-name="clockwerk" data-attr="str" data-attack="melee" data-roles="initiator disabler durable nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/rattletrap.png" alt="Clockwerk" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Clockwerk</span></div><div class="pick-hero" data-id="5" data-name="crystal maiden" data-attr="int" data-attack="ranged" data-roles="support disabler nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/crystal_maiden.png" alt="Crystal Maiden" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Crystal Maiden</span></div><div class="pick-hero" data-id="55" data-name="dark seer" data-attr="int" data-attack="melee" data-roles="initiator escape disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/dark_seer.png" alt="Dark Seer" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Dark Seer</span></div><div class="pick-hero" data-id="119" data-name="dark willow" data-attr="int" data-attack="ranged" data-roles="support nuker disabler escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/dark_willow.png" alt="Dark Willow" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Dark Willow</span></div><div class="pick-hero" data-id="135" data-name="dawnbreaker" data-attr="str" data-attack="melee" data-roles="carry durable" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/dawnbreaker.png" alt="Dawnbreaker" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Dawnbreaker</span></div><div class="pick-hero" data-id="50" data-name="dazzle" data-attr="all" data-attack="ranged" data-roles="support nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/dazzle.png" alt="Dazzle" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Dazzle</span></div><div class="pick-hero" data-id="43" data-name="death prophet" data-attr="all" data-attack="ranged" data-roles="carry pusher nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/death_prophet.png" alt="Death Prophet" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Death Prophet</span></div><div class="pick-hero" data-id="87" data-name="disruptor" data-attr="int" data-attack="ranged" data-roles="support disabler nuker initiator" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/disruptor.png" alt="Disruptor" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Disruptor</span></div><div class="pick-hero" data-id="69" data-name="doom" data-attr="str" data-attack="melee" data-roles="carry disabler initiator durable nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/doom_bringer.png" alt="Doom" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Doom</span></div><div class="pick-hero" data-id="49" data-name="dragon knight" data-attr="str" data-attack="melee" data-roles="carry pusher durable disabler initiator nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/dragon_knight.png" alt="Dragon Knight" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Dragon Knight</span></div><div class="pick-hero" data-id="6" data-name="drow ranger" data-attr="agi" data-attack="ranged" data-roles="carry disabler pusher" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/drow_ranger.png" alt="Drow Ranger" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Drow Ranger</span></div><div class="pick-hero" data-id="107" data-name="earth spirit" data-attr="str" data-attack="melee" data-roles="nuker escape disabler initiator durable" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/earth_spirit.png" alt="Earth Spirit" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Earth Spirit</span></div><div class="pick-hero" data-id="7" data-name="earthshaker" data-attr="str" data-attack="melee" data-roles="support initiator disabler nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/earthshaker.png" alt="Earthshaker" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Earthshaker</span></div><div class="pick-hero" data-id="103" data-name="elder titan" data-attr="str" data-attack="melee" data-roles="initiator disabler nuker durable" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/elder_titan.png" alt="Elder Titan" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Elder Titan</span></div><div class="pick-hero" data-id="106" data-name="ember spirit" data-attr="agi" data-attack="melee" data-roles="carry escape nuker disabler initiator" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/ember_spirit.png" alt="Ember Spirit" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Ember Spirit</span></div><div class="pick-hero" data-id="58" data-name="enchantress" data-attr="int" data-attack="ranged" data-roles="support pusher durable disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/enchantress.png" alt="Enchantress" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Enchantress</span></div><div class="pick-hero" data-id="33" data-name="enigma" data-attr="all" data-attack="ranged" data-roles="disabler initiator pusher" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/enigma.png" alt="Enigma" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Enigma</span></div><div class="pick-hero" data-id="41" data-name="faceless void" data-attr="agi" data-attack="melee" data-roles="carry initiator disabler escape durable" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/faceless_void.png" alt="Faceless Void" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Faceless Void</span></div><div class="pick-hero" data-id="121" data-name="grimstroke" data-attr="int" data-attack="ranged" data-roles="support nuker disabler escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/grimstroke.png" alt="Grimstroke" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Grimstroke</span></div><div class="pick-hero" data-id="72" data-name="gyrocopter" data-attr="agi" data-attack="ranged" data-roles="carry nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/gyrocopter.png" alt="Gyrocopter" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Gyrocopter</span></div><div class="pick-hero" data-id="123" data-name="hoodwink" data-attr="agi" data-attack="ranged" data-roles="support nuker escape disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/hoodwink.png" alt="Hoodwink" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Hoodwink</span></div><div class="pick-hero" data-id="59" data-name="huskar" data-attr="str" data-attack="ranged" data-roles="carry durable initiator" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/huskar.png" alt="Huskar" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Huskar</span></div><div class="pick-hero" data-id="74" data-name="invoker" data-attr="int" data-attack="ranged" data-roles="carry nuker disabler escape pusher" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/invoker.png" alt="Invoker" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Invoker</span></div><div class="pick-hero" data-id="91" data-name="io" data-attr="all" data-attack="ranged" data-roles="support escape nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/wisp.png" alt="Io" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Io</span></div><div class="pick-hero" data-id="64" data-name="jakiro" data-attr="int" data-attack="ranged" data-roles="support nuker pusher disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/jakiro.png" alt="Jakiro" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Jakiro</span></div><div class="pick-hero" data-id="8" data-name="juggernaut" data-attr="agi" data-attack="melee" data-roles="carry pusher escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/juggernaut.png" alt="Juggernaut" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Juggernaut</span></div><div class="pick-hero" data-id="90" data-name="keeper of the light" data-attr="int" data-attack="ranged" data-roles="support nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/keeper_of_the_light.png" alt="Keeper of the Light" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Keeper of the Light</span></div><div class="pick-hero" data-id="145" data-name="kez" data-attr="agi" data-attack="melee" data-roles="carry escape disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/kez.png" alt="Kez" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Kez</span></div><div class="pick-hero" data-id="23" data-name="kunkka" data-attr="str" data-attack="melee" data-roles="carry support disabler initiator durable nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/kunkka.png" alt="Kunkka" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Kunkka</span></div><div class="pick-hero" data-id="155" data-name="largo" data-attr="str" data-attack="melee" data-roles="durable disabler support" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/largo.png" alt="Largo" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Largo</span></div><div class="pick-hero" data-id="104" data-name="legion commander" data-attr="str" data-attack="melee" data-roles="carry disabler initiator durable nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/legion_commander.png" alt="Legion Commander" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Legion Commander</span></div><div class="pick-hero" data-id="52" data-name="leshrac" data-attr="int" data-attack="ranged" data-roles="carry support nuker pusher disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/leshrac.png" alt="Leshrac" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Leshrac</span></div><div class="pick-hero" data-id="31" data-name="lich" data-attr="int" data-attack="ranged" data-roles="support nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/lich.png" alt="Lich" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Lich</span></div><div class="pick-hero" data-id="54" data-name="lifestealer" data-attr="str" data-attack="melee" data-roles="carry durable escape disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/life_stealer.png" alt="Lifestealer" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Lifestealer</span></div><div class="pick-hero" data-id="25" data-name="lina" data-attr="int" data-attack="ranged" data-roles="support carry nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/lina.png" alt="Lina" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Lina</span></div><div class="pick-hero" data-id="26" data-name="lion" data-attr="int" data-attack="ranged" data-roles="support disabler nuker initiator" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/lion.png" alt="Lion" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Lion</span></div><div class="pick-hero" data-id="80" data-name="lone druid" data-attr="agi" data-attack="ranged" data-roles="carry pusher durable" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/lone_druid.png" alt="Lone Druid" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Lone Druid</span></div><div class="pick-hero" data-id="48" data-name="luna" data-attr="agi" data-attack="ranged" data-roles="carry nuker pusher" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/luna.png" alt="Luna" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Luna</span></div><div class="pick-hero" data-id="77" data-name="lycan" data-attr="str" data-attack="melee" data-roles="carry pusher durable escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/lycan.png" alt="Lycan" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Lycan</span></div><div class="pick-hero" data-id="97" data-name="magnus" data-attr="all" data-attack="melee" data-roles="initiator disabler nuker escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/magnataur.png" alt="Magnus" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Magnus</span></div><div class="pick-hero" data-id="136" data-name="marci" data-attr="all" data-attack="melee" data-roles="support carry initiator disabler escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/marci.png" alt="Marci" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Marci</span></div><div class="pick-hero" data-id="129" data-name="mars" data-attr="str" data-attack="melee" data-roles="carry initiator disabler durable" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/mars.png" alt="Mars" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Mars</span></div><div class="pick-hero" data-id="94" data-name="medusa" data-attr="agi" data-attack="ranged" data-roles="carry disabler durable" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/medusa.png" alt="Medusa" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Medusa</span></div><div class="pick-hero" data-id="82" data-name="meepo" data-attr="agi" data-attack="melee" data-roles="carry escape nuker disabler initiator pusher" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/meepo.png" alt="Meepo" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Meepo</span></div><div class="pick-hero" data-id="9" data-name="mirana" data-attr="agi" data-attack="ranged" data-roles="carry support escape nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/mirana.png" alt="Mirana" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Mirana</span></div><div class="pick-hero" data-id="114" data-name="monkey king" data-attr="agi" data-attack="melee" data-roles="carry escape disabler initiator" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/monkey_king.png" alt="Monkey King" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Monkey King</span></div><div class="pick-hero" data-id="10" data-name="morphling" data-attr="agi" data-attack="ranged" data-roles="carry escape durable nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/morphling.png" alt="Morphling" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Morphling</span></div><div class="pick-hero" data-id="138" data-name="muerta" data-attr="int" data-attack="ranged" data-roles="carry nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/muerta.png" alt="Muerta" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Muerta</span></div><div class="pick-hero" data-id="89" data-name="naga siren" data-attr="agi" data-attack="melee" data-roles="carry support pusher disabler initiator escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/naga_siren.png" alt="Naga Siren" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Naga Siren</span></div><div class="pick-hero" data-id="53" data-name="nature's prophet" data-attr="all" data-attack="ranged" data-roles="carry pusher escape nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/furion.png" alt="Nature&#x27;s Prophet" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Nature's Prophet</span></div><div class="pick-hero" data-id="36" data-name="necrophos" data-attr="int" data-attack="ranged" data-roles="carry nuker durable disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/necrolyte.png" alt="Necrophos" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Necrophos</span></div><div class="pick-hero" data-id="60" data-name="night stalker" data-attr="str" data-attack="melee" data-roles="carry initiator durable disabler nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/night_stalker.png" alt="Night Stalker" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Night Stalker</span></div><div class="pick-hero" data-id="88" data-name="nyx assassin" data-attr="all" data-attack="melee" data-roles="disabler nuker initiator escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/nyx_assassin.png" alt="Nyx Assassin" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Nyx Assassin</span></div><div class="pick-hero" data-id="84" data-name="ogre magi" data-attr="str" data-attack="melee" data-roles="support nuker disabler durable initiator" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/ogre_magi.png" alt="Ogre Magi" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Ogre Magi</span></div><div class="pick-hero" data-id="57" data-name="omniknight" data-attr="str" data-attack="melee" data-roles="support durable nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/omniknight.png" alt="Omniknight" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Omniknight</span></div><div class="pick-hero" data-id="111" data-name="oracle" data-attr="int" data-attack="ranged" data-roles="support nuker disabler escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/oracle.png" alt="Oracle" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Oracle</span></div><div class="pick-hero" data-id="76" data-name="outworld devourer" data-attr="int" data-attack="ranged" data-roles="carry nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/obsidian_destroyer.png" alt="Outworld Devourer" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Outworld Devourer</span></div><div class="pick-hero" data-id="120" data-name="pangolier" data-attr="all" data-attack="melee" data-roles="carry nuker disabler durable escape initiator" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/pangolier.png" alt="Pangolier" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Pangolier</span></div><div class="pick-hero" data-id="44" data-name="phantom assassin" data-attr="agi" data-attack="melee" data-roles="carry escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/phantom_assassin.png" alt="Phantom Assassin" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Phantom Assassin</span></div><div class="pick-hero" data-id="12" data-name="phantom lancer" data-attr="agi" data-attack="melee" data-roles="carry escape pusher nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/phantom_lancer.png" alt="Phantom Lancer" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Phantom Lancer</span></div><div class="pick-hero" data-id="110" data-name="phoenix" data-attr="str" data-attack="ranged" data-roles="support nuker initiator escape disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/phoenix.png" alt="Phoenix" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Phoenix</span></div><div class="pick-hero" data-id="137" data-name="primal beast" data-attr="str" data-attack="melee" data-roles="initiator durable disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/primal_beast.png" alt="Primal Beast" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Primal Beast</span></div><div class="pick-hero" data-id="13" data-name="puck" data-attr="int" data-attack="ranged" data-roles="initiator disabler escape nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/puck.png" alt="Puck" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Puck</span></div><div class="pick-hero" data-id="14" data-name="pudge" data-attr="str" data-attack="melee" data-roles="disabler initiator durable nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/pudge.png" alt="Pudge" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Pudge</span></div><div class="pick-hero" data-id="45" data-name="pugna" data-attr="int" data-attack="ranged" data-roles="nuker pusher" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/pugna.png" alt="Pugna" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Pugna</span></div><div class="pick-hero" data-id="39" data-name="queen of pain" data-attr="int" data-attack="ranged" data-roles="carry nuker escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/queenofpain.png" alt="Queen of Pain" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Queen of Pain</span></div><div class="pick-hero" data-id="15" data-name="razor" data-attr="agi" data-attack="ranged" data-roles="carry durable nuker pusher" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/razor.png" alt="Razor" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Razor</span></div><div class="pick-hero" data-id="32" data-name="riki" data-attr="agi" data-attack="melee" data-roles="carry escape disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/riki.png" alt="Riki" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Riki</span></div><div class="pick-hero" data-id="131" data-name="ring master" data-attr="int" data-attack="ranged" data-roles="support nuker escape disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/ringmaster.png" alt="Ring Master" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Ring Master</span></div><div class="pick-hero" data-id="86" data-name="rubick" data-attr="int" data-attack="ranged" data-roles="support disabler nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/rubick.png" alt="Rubick" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Rubick</span></div><div class="pick-hero" data-id="16" data-name="sand king" data-attr="all" data-attack="melee" data-roles="initiator disabler support nuker escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/sand_king.png" alt="Sand King" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Sand King</span></div><div class="pick-hero" data-id="79" data-name="shadow demon" data-attr="int" data-attack="ranged" data-roles="support disabler initiator nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/shadow_demon.png" alt="Shadow Demon" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Shadow Demon</span></div><div class="pick-hero" data-id="11" data-name="shadow fiend" data-attr="agi" data-attack="ranged" data-roles="carry nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/nevermore.png" alt="Shadow Fiend" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Shadow Fiend</span></div><div class="pick-hero" data-id="27" data-name="shadow shaman" data-attr="int" data-attack="ranged" data-roles="support pusher disabler nuker initiator" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/shadow_shaman.png" alt="Shadow Shaman" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Shadow Shaman</span></div><div class="pick-hero" data-id="75" data-name="silencer" data-attr="int" data-attack="ranged" data-roles="carry support disabler initiator nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/silencer.png" alt="Silencer" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Silencer</span></div><div class="pick-hero" data-id="101" data-name="skywrath mage" data-attr="int" data-attack="ranged" data-roles="support nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/skywrath_mage.png" alt="Skywrath Mage" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Skywrath Mage</span></div><div class="pick-hero" data-id="28" data-name="slardar" data-attr="str" data-attack="melee" data-roles="carry durable initiator disabler escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/slardar.png" alt="Slardar" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Slardar</span></div><div class="pick-hero" data-id="93" data-name="slark" data-attr="agi" data-attack="melee" data-roles="carry escape disabler nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/slark.png" alt="Slark" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Slark</span></div><div class="pick-hero" data-id="128" data-name="snapfire" data-attr="all" data-attack="ranged" data-roles="support nuker disabler escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/snapfire.png" alt="Snapfire" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Snapfire</span></div><div class="pick-hero" data-id="35" data-name="sniper" data-attr="agi" data-attack="ranged" data-roles="carry nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/sniper.png" alt="Sniper" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Sniper</span></div><div class="pick-hero" data-id="67" data-name="spectre" data-attr="agi" data-attack="melee" data-roles="carry durable escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/spectre.png" alt="Spectre" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Spectre</span></div><div class="pick-hero" data-id="71" data-name="spirit breaker" data-attr="str" data-attack="melee" data-roles="carry initiator disabler durable escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/spirit_breaker.png" alt="Spirit Breaker" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Spirit Breaker</span></div><div class="pick-hero" data-id="17" data-name="storm spirit" data-attr="int" data-attack="ranged" data-roles="carry escape nuker initiator disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/storm_spirit.png" alt="Storm Spirit" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Storm Spirit</span></div><div class="pick-hero" data-id="18" data-name="sven" data-attr="str" data-attack="melee" data-roles="carry disabler initiator durable nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/sven.png" alt="Sven" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Sven</span></div><div class="pick-hero" data-id="105" data-name="techies" data-attr="all" data-attack="ranged" data-roles="nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/techies.png" alt="Techies" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Techies</span></div><div class="pick-hero" data-id="46" data-name="templar assassin" data-attr="agi" data-attack="ranged" data-roles="carry escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/templar_assassin.png" alt="Templar Assassin" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Templar Assassin</span></div><div class="pick-hero" data-id="109" data-name="terrorblade" data-attr="agi" data-attack="melee" data-roles="carry pusher nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/terrorblade.png" alt="Terrorblade" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Terrorblade</span></div><div class="pick-hero" data-id="29" data-name="tidehunter" data-attr="str" data-attack="melee" data-roles="initiator durable disabler nuker carry" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/tidehunter.png" alt="Tidehunter" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Tidehunter</span></div><div class="pick-hero" data-id="98" data-name="timbersaw" data-attr="str" data-attack="melee" data-roles="nuker durable escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/shredder.png" alt="Timbersaw" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Timbersaw</span></div><div class="pick-hero" data-id="34" data-name="tinker" data-attr="int" data-attack="ranged" data-roles="carry nuker pusher" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/tinker.png" alt="Tinker" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Tinker</span></div><div class="pick-hero" data-id="19" data-name="tiny" data-attr="str" data-attack="melee" data-roles="carry nuker pusher initiator durable disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/tiny.png" alt="Tiny" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Tiny</span></div><div class="pick-hero" data-id="83" data-name="treant protector" data-attr="str" data-attack="melee" data-roles="support initiator durable disabler escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/treant.png" alt="Treant Protector" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Treant Protector</span></div><div class="pick-hero" data-id="95" data-name="troll warlord" data-attr="agi" data-attack="ranged" data-roles="carry pusher disabler durable" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/troll_warlord.png" alt="Troll Warlord" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Troll Warlord</span></div><div class="pick-hero" data-id="100" data-name="tusk" data-attr="str" data-attack="melee" data-roles="initiator disabler nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/tusk.png" alt="Tusk" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Tusk</span></div><div class="pick-hero" data-id="108" data-name="underlord" data-attr="str" data-attack="melee" data-roles="support nuker disabler durable escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/abyssal_underlord.png" alt="Underlord" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Underlord</span></div><div class="pick-hero" data-id="85" data-name="undying" data-attr="str" data-attack="melee" data-roles="support durable disabler nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/undying.png" alt="Undying" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Undying</span></div><div class="pick-hero" data-id="70" data-name="ursa" data-attr="agi" data-attack="melee" data-roles="carry durable disabler" data-changed="0"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/ursa.png" alt="Ursa" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="pick-hero-name">Ursa</span></div><div class="pick-hero" data-id="20" data-name="vengeful spirit" data-attr="agi" data-attack="ranged" data-roles="support initiator disabler nuker escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/vengefulspirit.png" alt="Vengeful Spirit" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Vengeful Spirit</span></div><div class="pick-hero" data-id="40" data-name="venomancer" data-attr="all" data-attack="ranged" data-roles="support nuker initiator pusher disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/venomancer.png" alt="Venomancer" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Venomancer</span></div><div class="pick-hero" data-id="47" data-name="viper" data-attr="agi" data-attack="ranged" data-roles="carry durable initiator disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/viper.png" alt="Viper" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Viper</span></div><div class="pick-hero" data-id="92" data-name="visage" data-attr="all" data-attack="ranged" data-roles="support nuker durable disabler pusher" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/visage.png" alt="Visage" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Visage</span></div><div class="pick-hero" data-id="126" data-name="void spirit" data-attr="all" data-attack="melee" data-roles="carry escape nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/void_spirit.png" alt="Void Spirit" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Void Spirit</span></div><div class="pick-hero" data-id="37" data-name="warlock" data-attr="int" data-attack="ranged" data-roles="support initiator disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/warlock.png" alt="Warlock" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Warlock</span></div><div class="pick-hero" data-id="63" data-name="weaver" data-attr="agi" data-attack="ranged" data-roles="carry escape" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/weaver.png" alt="Weaver" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Weaver</span></div><div class="pick-hero" data-id="21" data-name="windranger" data-attr="all" data-attack="ranged" data-roles="carry support disabler escape nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/windrunner.png" alt="Windranger" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Windranger</span></div><div class="pick-hero" data-id="112" data-name="winter wyvern" data-attr="int" data-attack="ranged" data-roles="support disabler nuker" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/winter_wyvern.png" alt="Winter Wyvern" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Winter Wyvern</span></div><div class="pick-hero" data-id="30" data-name="witch doctor" data-attr="int" data-attack="ranged" data-roles="support nuker disabler" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/witch_doctor.png" alt="Witch Doctor" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Witch Doctor</span></div><div class="pick-hero" data-id="42" data-name="wraith king" data-attr="str" data-attack="melee" data-roles="carry support durable disabler initiator" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/skeleton_king.png" alt="Wraith King" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Wraith King</span></div><div class="pick-hero" data-id="22" data-name="zeus" data-attr="int" data-attack="ranged" data-roles="nuker carry" data-changed="1"><img src="https://cdn.akamai.steamstatic.com/apps/dota2/images/dota_react/heroes/zuus.png" alt="Zeus" loading="lazy" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>'"><span class="change-dot"></span><span class="pick-hero-name">Zeus</span></div>
         </div>
@@ -1230,54 +1478,284 @@ function updateTipsPanel() {
 }
 
 // Highlight counters in the grid
+// Store computed scores for tooltips
+var heroScores = {};
+
 function highlightCounters() {
-    // Remove old highlights
+    // Remove old highlights and pills
     document.querySelectorAll('.pick-hero').forEach(el => {
         el.classList.remove('highlighted', 'counter-pick');
+        el.style.order = '';
+        var pill = el.querySelector('.wr-pill');
+        if (pill) pill.remove();
     });
+    
+    heroScores = {};
     
     const enemyTeam = activeTeam === 'radiant' ? 'dire' : 'radiant';
     const enemyPicked = teams[enemyTeam].filter(h => h !== null);
+    const myPicked = teams[activeTeam].filter(h => h !== null);
     
-    if (enemyPicked.length === 0) return;
+    var suggestBar = document.getElementById('suggest-bar');
     
-    // For each unpicked hero, check if they counter enemy heroes
-    const counterScores = {};
+    if (enemyPicked.length === 0) {
+        suggestBar.style.display = 'none';
+        return;
+    }
+    
+    var allScores = [];
     
     document.querySelectorAll('.pick-hero:not(.picked)').forEach(el => {
         const hid = parseInt(el.dataset.id);
         const matchups = MATCHUPS[hid];
-        if (!matchups || !matchups.g) return;
+        if (!matchups) return;
         
-        let score = 0;
-        matchups.g.forEach(m => {
-            if (enemyPicked.includes(m.id)) {
-                score += (m.wr - 50);
+        var goodVs = []; // this hero counters these enemies
+        var badVs = [];  // this hero is countered by these enemies
+        var totalScore = 0;
+        
+        enemyPicked.forEach(eid => {
+            var enemy = HEROES[eid];
+            if (!enemy) return;
+            
+            // Check if hid is good against eid
+            if (matchups.g) {
+                var good = matchups.g.find(m => m.id === eid);
+                if (good) {
+                    goodVs.push({id: eid, name: enemy.name, wr: good.wr, internal: enemy.internal});
+                    totalScore += (good.wr - 50);
+                }
+            }
+            
+            // Check if hid is bad against eid
+            if (matchups.c) {
+                var bad = matchups.c.find(m => m.id === eid);
+                if (bad) {
+                    badVs.push({id: eid, name: enemy.name, wr: bad.wr, internal: enemy.internal});
+                    totalScore -= (50 - bad.wr);
+                }
             }
         });
         
-        if (score > 5) {
+        heroScores[hid] = {score: totalScore, good: goodVs, bad: badVs};
+        
+        if (totalScore > 5) {
             el.classList.add('highlighted');
+            // Add winrate pill
+            if (goodVs.length > 0) {
+                var bestWr = Math.max(...goodVs.map(g => g.wr));
+                var pill = document.createElement('span');
+                pill.className = 'wr-pill good-pill';
+                pill.textContent = bestWr.toFixed(0) + '% vs ' + goodVs[0].name.split(' ')[0];
+                el.appendChild(pill);
+            }
+            allScores.push({hid, score: totalScore, good: goodVs, bad: badVs});
+        } else if (totalScore < -5) {
+            el.classList.add('counter-pick');
+            if (badVs.length > 0) {
+                var worstWr = Math.min(...badVs.map(b => b.wr));
+                var pill = document.createElement('span');
+                pill.className = 'wr-pill bad-pill';
+                pill.textContent = worstWr.toFixed(0) + '% vs ' + badVs[0].name.split(' ')[0];
+                el.appendChild(pill);
+            }
         }
     });
     
-    // Also highlight heroes that are countered by enemy
-    document.querySelectorAll('.pick-hero:not(.picked)').forEach(el => {
-        const hid = parseInt(el.dataset.id);
-        const matchups = MATCHUPS[hid];
-        if (!matchups || !matchups.c) return;
+    // Build suggest bar with top picks
+    allScores.sort((a,b) => b.score - a.score);
+    var topPicks = allScores.slice(0, 10);
+    
+    if (topPicks.length > 0) {
+        suggestBar.style.display = 'block';
+        var enemyNames = enemyPicked.map(id => HEROES[id].name);
+        document.getElementById('suggest-subtitle').textContent = 'mod ' + enemyNames.join(', ');
         
-        let counterScore = 0;
-        matchups.c.forEach(m => {
-            if (enemyPicked.includes(m.id)) {
-                counterScore += (50 - m.wr);
-            }
+        var listHtml = '';
+        topPicks.forEach(p => {
+            var info = HEROES[p.hid];
+            var goodText = p.good.map(g => g.wr.toFixed(0) + '% vs ' + g.name).join(', ');
+            
+            listHtml += '<div class="suggest-card" onclick="pickSuggested(' + p.hid + ')">';
+            listHtml += '<img src="' + CDN + '/heroes/' + info.internal + '.png" onerror="this.src=\'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2264%22 height=%2236%22><rect fill=%22%23222%22 width=%2264%22 height=%2236%22/></svg>\'">';
+            listHtml += '<div class="suggest-card-name">' + info.name + '</div>';
+            listHtml += '<div class="suggest-card-detail">' + goodText + '</div>';
+            listHtml += '<div class="suggest-card-score">Score: +' + p.score.toFixed(0) + '</div>';
+            listHtml += '</div>';
         });
         
-        if (counterScore > 10) {
-            el.classList.add('counter-pick');
+        document.getElementById('suggest-list').innerHTML = listHtml;
+    } else {
+        suggestBar.style.display = 'none';
+    }
+}
+
+// Click a suggestion to pick it
+function pickSuggested(hid) {
+    var heroEl = document.querySelector('.pick-hero[data-id="' + hid + '"]');
+    if (heroEl && !heroEl.classList.contains('picked')) {
+        heroEl.click();
+    }
+}
+
+// Tooltip logic
+var tooltip = document.getElementById('hero-tooltip');
+var tooltipTimeout = null;
+
+document.getElementById('hero-grid').addEventListener('mouseover', function(e) {
+    var heroEl = e.target.closest('.pick-hero');
+    if (!heroEl || heroEl.classList.contains('picked')) {
+        return;
+    }
+    
+    clearTimeout(tooltipTimeout);
+    tooltipTimeout = setTimeout(function() {
+        showTooltip(heroEl);
+    }, 200);
+});
+
+document.getElementById('hero-grid').addEventListener('mouseout', function(e) {
+    var heroEl = e.target.closest('.pick-hero');
+    if (heroEl) {
+        clearTimeout(tooltipTimeout);
+        tooltip.classList.remove('visible');
+    }
+});
+
+function showTooltip(heroEl) {
+    var hid = parseInt(heroEl.dataset.id);
+    var info = HEROES[hid];
+    if (!info) return;
+    
+    var a = ANALYSIS[hid] || {};
+    var scores = heroScores[hid] || {score: 0, good: [], bad: []};
+    var matchups = MATCHUPS[hid] || {};
+    
+    var enemyTeam = activeTeam === 'radiant' ? 'dire' : 'radiant';
+    var enemyPicked = teams[enemyTeam].filter(h => h !== null);
+    
+    // Verdict badge
+    var verdictMap = {
+        'buffed': ['BUFFED', '#3fb950'],
+        'nerfed': ['NERFED', '#f85149'],
+        'rework': ['REWORK', '#d29922'],
+        'mixed': ['MIXED', '#bc8cff'],
+        'adjusted': ['ADJUSTED', '#6e7681']
+    };
+    var vInfo = verdictMap[a.v] || ['—', '#6e7681'];
+    
+    var h = '';
+    
+    // Header
+    h += '<div class="tt-header">';
+    h += '<img class="tt-img" src="' + CDN + '/heroes/' + info.internal + '.png" onerror="this.style.display=\'none\'">';
+    h += '<div><div class="tt-name">' + info.name;
+    h += '<span class="tt-verdict" style="background:' + vInfo[1] + '22;color:' + vInfo[1] + '">' + vInfo[0] + '</span>';
+    h += '</div>';
+    h += '<div class="tt-meta">' + info.attr.toUpperCase() + ' · ' + info.attack + ' · ' + info.roles.slice(0,3).join(', ') + '</div>';
+    h += '</div></div>';
+    
+    // Matchup score bar (if enemies picked)
+    if (enemyPicked.length > 0) {
+        var score = scores.score || 0;
+        var normalizedScore = Math.min(Math.max((score + 30) / 60 * 100, 5), 95);
+        var barColor = score > 0 ? '#3fb950' : score < 0 ? '#f85149' : '#6e7681';
+        var scoreLabel = score > 0 ? 'God pick' : score < 0 ? 'Dårlig pick' : 'Neutral';
+        
+        h += '<div class="tt-section">';
+        h += '<div class="tt-score-bar"><div class="tt-score-fill" style="width:' + normalizedScore + '%;background:' + barColor + '"></div></div>';
+        h += '<div class="tt-score-label"><span>' + scoreLabel + '</span><span style="color:' + barColor + '">' + (score > 0 ? '+' : '') + score.toFixed(0) + ' score</span></div>';
+        h += '</div>';
+        
+        // Good matchups against enemy
+        if (scores.good && scores.good.length > 0) {
+            h += '<div class="tt-section">';
+            h += '<div class="tt-section-label" style="color:var(--green)">✅ Stærk mod</div>';
+            scores.good.forEach(function(g) {
+                h += '<div class="tt-matchup-row">';
+                h += '<img src="' + CDN + '/heroes/' + g.internal + '.png" onerror="this.style.display=\'none\'">';
+                h += '<span>' + g.name + '</span>';
+                h += '<span class="tt-matchup-wr good">' + g.wr.toFixed(1) + '%</span>';
+                h += '</div>';
+            });
+            h += '</div>';
         }
-    });
+        
+        // Bad matchups against enemy
+        if (scores.bad && scores.bad.length > 0) {
+            h += '<div class="tt-section">';
+            h += '<div class="tt-section-label" style="color:var(--red)">⚠️ Svag mod</div>';
+            scores.bad.forEach(function(b) {
+                h += '<div class="tt-matchup-row">';
+                h += '<img src="' + CDN + '/heroes/' + b.internal + '.png" onerror="this.style.display=\'none\'">';
+                h += '<span>' + b.name + '</span>';
+                h += '<span class="tt-matchup-wr bad">' + b.wr.toFixed(1) + '%</span>';
+                h += '</div>';
+            });
+            h += '</div>';
+        }
+    } else {
+        // No enemies picked - show general top counters
+        if (matchups.c && matchups.c.length > 0) {
+            h += '<div class="tt-section">';
+            h += '<div class="tt-section-label" style="color:var(--red)">Countered af</div>';
+            matchups.c.slice(0, 3).forEach(function(m) {
+                var opp = HEROES[m.id];
+                if (!opp) return;
+                h += '<div class="tt-matchup-row">';
+                h += '<img src="' + CDN + '/heroes/' + opp.internal + '.png" onerror="this.style.display=\'none\'">';
+                h += '<span>' + opp.name + '</span>';
+                h += '<span class="tt-matchup-wr bad">' + m.wr.toFixed(1) + '%</span>';
+                h += '</div>';
+            });
+            h += '</div>';
+        }
+        if (matchups.g && matchups.g.length > 0) {
+            h += '<div class="tt-section">';
+            h += '<div class="tt-section-label" style="color:var(--green)">Stærk mod</div>';
+            matchups.g.slice(0, 3).forEach(function(m) {
+                var opp = HEROES[m.id];
+                if (!opp) return;
+                h += '<div class="tt-matchup-row">';
+                h += '<img src="' + CDN + '/heroes/' + opp.internal + '.png" onerror="this.style.display=\'none\'">';
+                h += '<span>' + opp.name + '</span>';
+                h += '<span class="tt-matchup-wr good">' + m.wr.toFixed(1) + '%</span>';
+                h += '</div>';
+            });
+            h += '</div>';
+        }
+    }
+    
+    // Patch status summary
+    if (a.b && a.b.length > 0 || a.n && a.n.length > 0) {
+        h += '<div class="tt-section" style="border-top:1px solid var(--border);padding-top:6px;margin-top:6px">';
+        h += '<div class="tt-section-label" style="color:var(--accent)">7.41 Ændringer</div>';
+        if (a.bc) h += '<span style="color:var(--green);font-size:0.85em">▲' + a.bc + ' buffs</span> ';
+        if (a.nc) h += '<span style="color:var(--red);font-size:0.85em">▼' + a.nc + ' nerfs</span> ';
+        if (a.rc) h += '<span style="color:var(--yellow);font-size:0.85em">↻' + a.rc + ' ændringer</span>';
+        h += '</div>';
+    }
+    
+    tooltip.innerHTML = h;
+    tooltip.classList.add('visible');
+    
+    // Position tooltip
+    var rect = heroEl.getBoundingClientRect();
+    var ttRect = tooltip.getBoundingClientRect();
+    var x = rect.right + 10;
+    var y = rect.top;
+    
+    // Keep on screen
+    if (x + 280 > window.innerWidth) {
+        x = rect.left - 290;
+    }
+    if (y + ttRect.height > window.innerHeight - 20) {
+        y = window.innerHeight - ttRect.height - 20;
+    }
+    if (y < 10) y = 10;
+    
+    tooltip.style.left = x + 'px';
+    tooltip.style.top = y + 'px';
 }
 
 // Filters
@@ -1356,5 +1834,9 @@ function switchPanel(tab) {
     document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
 }
 </script>
+
+<div class="hero-tooltip" id="hero-tooltip"></div>
+
+<!-- Suggested picks panel (shows above hero grid when enemies are picked) -->
 </body>
 </html>

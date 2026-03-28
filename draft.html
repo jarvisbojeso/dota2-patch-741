@@ -175,34 +175,52 @@ body {
     .mobile-pick-btn {
         flex: 1;
         padding: 12px 24px;
-        background: var(--orange);
-        color: white;
+        background: var(--accent);
+        color: #000;
         border: none;
         border-radius: 8px;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 16px;
         cursor: pointer;
         min-height: 44px;
         touch-action: manipulation;
     }
     
-    .mobile-pick-btn:hover {
+    .mobile-pick-btn:active {
         background: #e17b47;
     }
     /* Teams row - stack vertically */
     .teams-row {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr auto 1fr;
+        grid-template-rows: auto auto auto;
         gap: 8px;
+    }
+    .team-panel {
+        padding: 10px;
+    }
+    .team-slots {
+        gap: 4px;
+        flex-wrap: wrap;
+    }
+    .team-slot {
+        width: 52px;
+        height: 30px;
     }
     .vs-badge {
         justify-self: center;
         grid-row: 2;
-        font-size: 0.8em;
-        padding: 4px 12px;
+        font-size: 0.75em;
+        padding: 3px 10px;
     }
     .team-dire {
         order: 3;
+    }
+    /* Show remove button always on touch (no hover) */
+    .team-slot.filled .remove-btn {
+        display: flex;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
     }
     /* Hero grid - reduce size */
     .hero-picker-grid {
@@ -1331,9 +1349,12 @@ document.getElementById('btn-dire').addEventListener('click', function(e) {
 // Init visual state
 setTeam('radiant');
 
-// Pick hero
-document.getElementById('hero-grid').addEventListener('click', e => {
-    const heroEl = e.target.closest('.pick-hero');
+// Detect touch device early (used by pick handler and tooltip logic)
+var isMobileDevice = 'ontouchstart' in window;
+var mobileTooltipOpen = false;
+
+// Pick hero (extracted as named function so mobile touch + button can call it)
+function pickHero(heroEl) {
     if (!heroEl || heroEl.classList.contains('picked')) return;
     
     const hid = parseInt(heroEl.dataset.id);
@@ -1347,6 +1368,12 @@ document.getElementById('hero-grid').addEventListener('click', e => {
     updateSlots();
     updateSidebar();
     highlightCounters();
+}
+
+document.getElementById('hero-grid').addEventListener('click', e => {
+    if (isMobileDevice) return; // Mobile uses touchstart handler instead
+    const heroEl = e.target.closest('.pick-hero');
+    pickHero(heroEl);
 });
 
 // Remove from slot
@@ -1850,16 +1877,13 @@ function highlightCounters() {
 function pickSuggested(hid) {
     var heroEl = document.querySelector('.pick-hero[data-id="' + hid + '"]');
     if (heroEl && !heroEl.classList.contains('picked')) {
-        heroEl.click();
+        pickHero(heroEl);
     }
 }
 
 // Tooltip logic
 var tooltip = document.getElementById('hero-tooltip');
 var tooltipTimeout = null;
-var isMobileDevice = 'ontouchstart' in window;
-var mobileTooltipOpen = false;
-
 document.getElementById('hero-grid').addEventListener('mouseover', function(e) {
     if (isMobileDevice) return; // Skip hover events on mobile
     
@@ -1885,6 +1909,8 @@ document.getElementById('hero-grid').addEventListener('mouseout', function(e) {
 });
 
 // Mobile touch handling for hero grid
+var mobileTooltipHeroId = null;
+
 document.getElementById('hero-grid').addEventListener('touchstart', function(e) {
     if (!isMobileDevice) return;
     
@@ -1895,13 +1921,16 @@ document.getElementById('hero-grid').addEventListener('touchstart', function(e) 
     
     e.preventDefault(); // Prevent default touch behavior
     
-    if (mobileTooltipOpen && tooltip.classList.contains('visible')) {
-        // If tooltip is already open, pick the hero
+    var hid = parseInt(heroEl.dataset.id);
+    
+    if (mobileTooltipOpen && mobileTooltipHeroId === hid) {
+        // Second tap on same hero — pick it
         pickHero(heroEl);
         hideMobileTooltip();
     } else {
-        // Show tooltip first
+        // First tap (or different hero) — show tooltip
         showMobileTooltip(heroEl);
+        mobileTooltipHeroId = hid;
     }
 });
 

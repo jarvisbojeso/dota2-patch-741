@@ -81,35 +81,48 @@ body {
 }
 
 @media (max-width: 960px) {
+    /* Layout: single column, no sidebar column */
     .draft-layout {
-        grid-template-columns: 1fr;
+        display: block;
     }
     .main-area {
-        padding-bottom: 60px; /* Space for collapsed sidebar toggle */
+        padding-bottom: 56px; /* Space for collapsed sidebar toggle */
     }
+
+    /* Sidebar: bottom sheet */
     .sidebar {
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        height: 60vh; /* Increased from 50vh */
-        z-index: 50;
-        transform: translateY(calc(100% - 48px));
-        transition: transform 0.3s;
+        height: 70vh;
+        z-index: 100;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
         border-radius: 16px 16px 0 0;
+        border-left: none;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
     .sidebar.open { transform: translateY(0); }
-    .sidebar-toggle { 
+    .sidebar-toggle {
         display: flex !important;
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        z-index: 49;
-        border-radius: 12px 12px 0 0;
+        z-index: 99;
+        background: var(--bg-card);
+        border-top: 1px solid var(--border);
+        border-radius: 0;
         font-weight: 600;
-        min-height: 44px;
+        min-height: 48px;
         touch-action: manipulation;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.9em;
+        color: var(--text);
     }
     .sidebar-backdrop {
         display: none;
@@ -119,81 +132,16 @@ body {
         right: 0;
         bottom: 0;
         background: rgba(0,0,0,0.5);
-        z-index: 45;
+        z-index: 98;
     }
-    
-    /* Mobile tooltip styles */
-    .hero-tooltip.mobile-tooltip {
-        position: fixed !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        top: auto !important;
-        width: auto !important;
-        max-height: 70vh;
-        overflow-y: auto;
-        border-radius: 16px 16px 0 0;
-        z-index: 1000;
-    }
-    
-    .mobile-tt-header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 16px;
-        border-bottom: 1px solid var(--border);
-        position: relative;
-    }
-    
-    .mobile-tt-close {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-        width: 32px;
-        height: 32px;
-        border: none;
-        background: var(--bg);
-        color: var(--fg);
-        border-radius: 6px;
-        font-size: 20px;
-        font-weight: bold;
-        cursor: pointer;
-        z-index: 10;
-    }
-    
-    .mobile-tt-close:hover {
-        background: var(--bg-hover);
-    }
-    
-    .mobile-tt-actions {
-        padding: 16px;
-        border-top: 1px solid var(--border);
-        display: flex;
-        gap: 12px;
-    }
-    
-    .mobile-pick-btn {
-        flex: 1;
-        padding: 12px 24px;
-        background: var(--accent);
-        color: #000;
-        border: none;
-        border-radius: 8px;
-        font-weight: 700;
-        font-size: 16px;
-        cursor: pointer;
-        min-height: 44px;
-        touch-action: manipulation;
-    }
-    
-    .mobile-pick-btn:active {
-        background: #e17b47;
-    }
+    .sidebar-backdrop.visible { display: block; }
+
     /* Teams row - full width, stacked vertically */
     .teams-row {
-        display: flex;
+        display: flex !important;
         flex-direction: column;
         gap: 6px;
+        grid-template-columns: unset !important;
     }
     .team-panel {
         padding: 10px 12px;
@@ -207,6 +155,7 @@ body {
         flex: 1;
         min-width: 0;
         height: 32px;
+        width: auto;
     }
     .vs-badge {
         align-self: center;
@@ -220,15 +169,13 @@ body {
         height: 20px;
         font-size: 12px;
     }
-    /* Hero grid - reduce size */
+    /* Hero grid */
     .hero-picker-grid {
         grid-template-columns: repeat(auto-fill, minmax(62px, 1fr));
         gap: 3px;
     }
-    /* Filter bar improvements */
-    .filter-bar {
-        gap: 6px;
-    }
+    /* Filter bar */
+    .filter-bar { gap: 6px; }
     .filter-search {
         min-width: 120px;
         font-size: 0.85em;
@@ -238,30 +185,20 @@ body {
         font-size: 0.74em;
         padding: 5px 8px;
     }
-    /* Team selector - larger touch targets */
+    /* Team selector */
     .team-btn {
         min-height: 44px;
         touch-action: manipulation;
         padding: 8px 16px;
         font-size: 0.85em;
     }
-    /* Suggest bar - narrower cards */
-    .suggest-card {
-        width: 80px;
-    }
-    .suggest-card-name {
-        font-size: 0.64em;
-    }
-    .suggest-card-detail {
-        font-size: 0.58em;
-    }
-    /* Top bar adjustments */
-    .top-bar h1 {
-        font-size: 1.1em;
-    }
-    .top-bar-links {
-        gap: 8px;
-    }
+    /* Suggest bar */
+    .suggest-card { width: 80px; }
+    .suggest-card-name { font-size: 0.64em; }
+    .suggest-card-detail { font-size: 0.58em; }
+    /* Top bar */
+    .top-bar h1 { font-size: 1.1em; }
+    .top-bar-links { gap: 8px; }
     .top-bar-links a {
         font-size: 0.8em;
         padding: 6px 10px;
@@ -270,14 +207,11 @@ body {
         align-items: center;
         touch-action: manipulation;
     }
-    .clear-btn {
-        min-height: 44px;
-        touch-action: manipulation;
-    }
-    /* General touch improvements */
-    button, .filter-btn, .team-slot, .pick-hero {
-        touch-action: manipulation;
-    }
+    .clear-btn { min-height: 44px; touch-action: manipulation; }
+    /* Touch */
+    button, .filter-btn, .team-slot, .pick-hero { touch-action: manipulation; }
+    /* Hide desktop tooltip on mobile */
+    .hero-tooltip:not(.mobile-tooltip) { display: none !important; }
 }
 
 @media (max-width: 480px) {
@@ -2261,16 +2195,24 @@ function pickHeroById(hid) {
 function toggleSidebar() {
     var sidebar = document.getElementById('sidebar');
     var backdrop = document.getElementById('sidebar-backdrop');
-    sidebar.classList.toggle('open');
-    backdrop.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+    var isOpen = sidebar.classList.toggle('open');
+    backdrop.classList.toggle('visible', isOpen);
+    // Update toggle button text
+    var toggle = sidebar.querySelector('.sidebar-toggle');
+    if (toggle) toggle.textContent = isOpen ? '📊 Analyse ▼' : '📊 Analyse ▲';
+}
+
+function closeSidebar() {
+    var sidebar = document.getElementById('sidebar');
+    var backdrop = document.getElementById('sidebar-backdrop');
+    sidebar.classList.remove('open');
+    backdrop.classList.remove('visible');
+    var toggle = sidebar.querySelector('.sidebar-toggle');
+    if (toggle) toggle.textContent = '📊 Analyse ▲';
 }
 
 // Close sidebar when clicking backdrop
-document.getElementById('sidebar-backdrop').addEventListener('click', function() {
-    var sidebar = document.getElementById('sidebar');
-    sidebar.classList.remove('open');
-    this.style.display = 'none';
-});
+document.getElementById('sidebar-backdrop').addEventListener('click', closeSidebar);
 </script>
 
 <div class="hero-tooltip" id="hero-tooltip"></div>

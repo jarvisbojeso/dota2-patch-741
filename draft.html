@@ -1077,6 +1077,9 @@ function setTeam(team) {
     // Also highlight the active team panel
     document.querySelector('.team-radiant').style.boxShadow = team === 'radiant' ? '0 0 0 2px var(--radiant)' : 'none';
     document.querySelector('.team-dire').style.boxShadow = team === 'dire' ? '0 0 0 2px var(--dire)' : 'none';
+    // Re-run highlights and sidebar for the new active team
+    highlightCounters();
+    updateSidebar();
 }
 
 // Also allow clicking empty slots to switch team
@@ -1227,26 +1230,54 @@ function updateCounterPanel() {
     
     let html = '';
     
-    // For each team, show how enemy heroes counter them
-    if (radiantPicked.length > 0 && direPicked.length > 0) {
-        html += `<h4 style="color:var(--dire);font-size:0.85em;margin-bottom:8px">🌙 Dire's fordele mod Radiant</h4>`;
-        html += getMatchupHtml(direPicked, radiantPicked);
+    const myTeam = activeTeam;
+    const enemyTeam = activeTeam === 'radiant' ? 'dire' : 'radiant';
+    const myPicked = teams[myTeam].filter(h => h !== null);
+    const enemyPicked = teams[enemyTeam].filter(h => h !== null);
+    const myIcon = myTeam === 'radiant' ? '☀️' : '🌙';
+    const myName = myTeam === 'radiant' ? 'Radiant' : 'Dire';
+    const enemyIcon = enemyTeam === 'radiant' ? '☀️' : '🌙';
+    const enemyName = enemyTeam === 'radiant' ? 'Radiant' : 'Dire';
+    const myColor = myTeam === 'radiant' ? 'var(--radiant)' : 'var(--dire)';
+    const enemyColor = enemyTeam === 'radiant' ? 'var(--radiant)' : 'var(--dire)';
+    
+    if (myPicked.length > 0 && enemyPicked.length > 0) {
+        // Show active team's advantages first, then enemy advantages
+        html += `<h4 style="color:${myColor};font-size:0.85em;margin-bottom:8px">${myIcon} ${myName}'s fordele</h4>`;
+        html += getMatchupHtml(myPicked, enemyPicked);
         
-        html += `<h4 style="color:var(--radiant);font-size:0.85em;margin:16px 0 8px">☀️ Radiant's fordele mod Dire</h4>`;
-        html += getMatchupHtml(radiantPicked, direPicked);
-    } else {
-        // Show counters for the team that has picks
-        const picked = radiantPicked.length > 0 ? radiantPicked : direPicked;
-        const teamName = radiantPicked.length > 0 ? 'Radiant' : 'Dire';
-        
-        html += `<h4 style="font-size:0.85em;margin-bottom:8px">Counters mod ${teamName}</h4>`;
-        picked.forEach(hid => {
+        html += `<h4 style="color:${enemyColor};font-size:0.85em;margin:16px 0 8px">${enemyIcon} ${enemyName}'s fordele</h4>`;
+        html += getMatchupHtml(enemyPicked, myPicked);
+    } else if (enemyPicked.length > 0) {
+        // Only enemy has picks — show counters against them
+        html += `<h4 style="font-size:0.85em;margin-bottom:8px">Counters mod ${enemyIcon} ${enemyName}</h4>`;
+        enemyPicked.forEach(hid => {
             const info = HEROES[hid];
             const matchups = MATCHUPS[hid];
             if (!matchups || !matchups.c) return;
             
             html += `<div style="margin:8px 0"><strong style="font-size:0.85em">${info.name}</strong> svag mod:</div>`;
-            matchups.c.forEach(m => {
+            matchups.c.slice(0, 5).forEach(m => {
+                const opp = HEROES[m.id];
+                if (!opp) return;
+                html += `<div class="matchup-row">`;
+                html += `<img src="${CDN}/heroes/${opp.internal}.png" onerror="this.style.display='none'">`;
+                html += `<span class="matchup-name">${opp.name}</span>`;
+                html += `<span class="matchup-wr bad">${m.wr}%</span>`;
+                html += `<span class="matchup-games">${m.g} spil</span>`;
+                html += `</div>`;
+            });
+        });
+    } else if (myPicked.length > 0) {
+        // Only my team has picks — show their vulnerabilities
+        html += `<h4 style="font-size:0.85em;margin-bottom:8px">${myIcon} ${myName} svagheder</h4>`;
+        myPicked.forEach(hid => {
+            const info = HEROES[hid];
+            const matchups = MATCHUPS[hid];
+            if (!matchups || !matchups.c) return;
+            
+            html += `<div style="margin:8px 0"><strong style="font-size:0.85em">${info.name}</strong> svag mod:</div>`;
+            matchups.c.slice(0, 5).forEach(m => {
                 const opp = HEROES[m.id];
                 if (!opp) return;
                 html += `<div class="matchup-row">`;
@@ -1569,7 +1600,8 @@ function highlightCounters() {
     if (topPicks.length > 0) {
         suggestBar.style.display = 'block';
         var enemyNames = enemyPicked.map(id => HEROES[id].name);
-        document.getElementById('suggest-subtitle').textContent = 'mod ' + enemyNames.join(', ');
+        var myLabel = activeTeam === 'radiant' ? '☀️ Radiant' : '🌙 Dire';
+        document.getElementById('suggest-subtitle').textContent = myLabel + ' picks mod ' + enemyNames.join(', ');
         
         var listHtml = '';
         topPicks.forEach(p => {

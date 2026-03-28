@@ -189,31 +189,29 @@ body {
     .mobile-pick-btn:active {
         background: #e17b47;
     }
-    /* Teams row - stack vertically */
+    /* Teams row - full width, stacked vertically */
     .teams-row {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        gap: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
     }
     .team-panel {
-        padding: 10px;
+        padding: 10px 12px;
     }
     .team-slots {
-        gap: 4px;
-        flex-wrap: wrap;
+        display: flex;
+        gap: 6px;
+        flex-wrap: nowrap;
     }
     .team-slot {
-        width: 52px;
-        height: 30px;
+        flex: 1;
+        min-width: 0;
+        height: 32px;
     }
     .vs-badge {
-        justify-self: center;
-        grid-row: 2;
-        font-size: 0.75em;
-        padding: 3px 10px;
-    }
-    .team-dire {
-        order: 3;
+        align-self: center;
+        font-size: 0.7em;
+        padding: 2px 12px;
     }
     /* Show remove button always on touch (no hover) */
     .team-slot.filled .remove-btn {
@@ -292,15 +290,10 @@ body {
         margin-bottom: 16px;
     }
     .team-slot {
-        width: 48px;
         height: 28px;
     }
     .team-slot .slot-label {
         font-size: 0.6em;
-    }
-    .vs-badge {
-        font-size: 0.75em;
-        padding: 3px 10px;
     }
     /* Hero grid - smaller on mobile */
     .hero-picker-grid {
@@ -1909,30 +1902,51 @@ document.getElementById('hero-grid').addEventListener('mouseout', function(e) {
 });
 
 // Mobile touch handling for hero grid
+// Use touchstart + touchend to distinguish taps from scrolls
 var mobileTooltipHeroId = null;
+var touchStartPos = null;
+var touchStartHero = null;
 
 document.getElementById('hero-grid').addEventListener('touchstart', function(e) {
     if (!isMobileDevice) return;
     
     var heroEl = e.target.closest('.pick-hero');
     if (!heroEl || heroEl.classList.contains('picked')) {
+        touchStartHero = null;
         return;
     }
     
-    e.preventDefault(); // Prevent default touch behavior
+    // Don't preventDefault — allow scrolling!
+    var touch = e.touches[0];
+    touchStartPos = { x: touch.clientX, y: touch.clientY };
+    touchStartHero = heroEl;
+}, { passive: true });
+
+document.getElementById('hero-grid').addEventListener('touchend', function(e) {
+    if (!isMobileDevice || !touchStartHero) return;
+    
+    var touch = e.changedTouches[0];
+    var dx = Math.abs(touch.clientX - touchStartPos.x);
+    var dy = Math.abs(touch.clientY - touchStartPos.y);
+    
+    // If finger moved more than 10px, it was a scroll, not a tap
+    if (dx > 10 || dy > 10) {
+        touchStartHero = null;
+        return;
+    }
+    
+    e.preventDefault(); // Only prevent default on actual taps
+    
+    var heroEl = touchStartHero;
+    touchStartHero = null;
+    
+    if (heroEl.classList.contains('picked')) return;
     
     var hid = parseInt(heroEl.dataset.id);
     
-    if (mobileTooltipOpen && mobileTooltipHeroId === hid) {
-        // Second tap on same hero — pick it
-        pickHero(heroEl);
-        hideMobileTooltip();
-    } else {
-        // First tap (or different hero) — show tooltip
-        showMobileTooltip(heroEl);
-        mobileTooltipHeroId = hid;
-    }
-});
+    // On mobile: tap directly picks the hero (no tooltip gate)
+    pickHero(heroEl);
+}, { passive: false });
 
 // Close mobile tooltip when tapping outside
 document.addEventListener('touchstart', function(e) {
@@ -1941,7 +1955,7 @@ document.addEventListener('touchstart', function(e) {
     if (mobileTooltipOpen && !e.target.closest('#hero-tooltip') && !e.target.closest('.pick-hero')) {
         hideMobileTooltip();
     }
-});
+}, { passive: true });
 
 function showTooltip(heroEl) {
     var hid = parseInt(heroEl.dataset.id);

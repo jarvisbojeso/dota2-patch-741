@@ -84,25 +84,246 @@ body {
     .draft-layout {
         grid-template-columns: 1fr;
     }
+    .main-area {
+        padding-bottom: 60px; /* Space for collapsed sidebar toggle */
+    }
     .sidebar {
         position: fixed;
         bottom: 0;
         left: 0;
         right: 0;
-        height: 50vh;
+        height: 60vh; /* Increased from 50vh */
         z-index: 50;
         transform: translateY(calc(100% - 48px));
         transition: transform 0.3s;
         border-radius: 16px 16px 0 0;
     }
     .sidebar.open { transform: translateY(0); }
-    .sidebar-toggle { display: flex !important; }
+    .sidebar-toggle { 
+        display: flex !important;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 49;
+        border-radius: 12px 12px 0 0;
+        font-weight: 600;
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+    .sidebar-backdrop {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 45;
+    }
+    
+    /* Mobile tooltip styles */
+    .hero-tooltip.mobile-tooltip {
+        position: fixed !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        top: auto !important;
+        width: auto !important;
+        max-height: 70vh;
+        overflow-y: auto;
+        border-radius: 16px 16px 0 0;
+        z-index: 1000;
+    }
+    
+    .mobile-tt-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+    }
+    
+    .mobile-tt-close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
+        border: none;
+        background: var(--bg);
+        color: var(--fg);
+        border-radius: 6px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10;
+    }
+    
+    .mobile-tt-close:hover {
+        background: var(--bg-hover);
+    }
+    
+    .mobile-tt-actions {
+        padding: 16px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        gap: 12px;
+    }
+    
+    .mobile-pick-btn {
+        flex: 1;
+        padding: 12px 24px;
+        background: var(--orange);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+    
+    .mobile-pick-btn:hover {
+        background: #e17b47;
+    }
+    /* Teams row - stack vertically */
+    .teams-row {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto 1fr;
+        gap: 8px;
+    }
+    .vs-badge {
+        justify-self: center;
+        grid-row: 2;
+        font-size: 0.8em;
+        padding: 4px 12px;
+    }
+    .team-dire {
+        order: 3;
+    }
+    /* Hero grid - reduce size */
+    .hero-picker-grid {
+        grid-template-columns: repeat(auto-fill, minmax(62px, 1fr));
+        gap: 3px;
+    }
+    /* Filter bar improvements */
+    .filter-bar {
+        gap: 6px;
+    }
+    .filter-search {
+        min-width: 120px;
+        font-size: 0.85em;
+        padding: 6px 12px;
+    }
+    .filter-btn {
+        font-size: 0.74em;
+        padding: 5px 8px;
+    }
+    /* Team selector - larger touch targets */
+    .team-btn {
+        min-height: 44px;
+        touch-action: manipulation;
+        padding: 8px 16px;
+        font-size: 0.85em;
+    }
+    /* Suggest bar - narrower cards */
+    .suggest-card {
+        width: 80px;
+    }
+    .suggest-card-name {
+        font-size: 0.64em;
+    }
+    .suggest-card-detail {
+        font-size: 0.58em;
+    }
+    /* Top bar adjustments */
+    .top-bar h1 {
+        font-size: 1.1em;
+    }
+    .top-bar-links {
+        gap: 8px;
+    }
+    .top-bar-links a {
+        font-size: 0.8em;
+        padding: 6px 10px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        touch-action: manipulation;
+    }
+    .clear-btn {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+    /* General touch improvements */
+    button, .filter-btn, .team-slot, .pick-hero {
+        touch-action: manipulation;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Mobile-specific overrides */
+    .main-area {
+        padding: 12px 16px 60px;
+    }
+    .teams-row {
+        gap: 6px;
+        margin-bottom: 16px;
+    }
+    .team-slot {
+        width: 48px;
+        height: 28px;
+    }
+    .team-slot .slot-label {
+        font-size: 0.6em;
+    }
+    .vs-badge {
+        font-size: 0.75em;
+        padding: 3px 10px;
+    }
+    /* Hero grid - smaller on mobile */
+    .hero-picker-grid {
+        grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+        gap: 2px;
+    }
+    /* Filter bar - full width search */
+    .filter-search {
+        flex: 1;
+        width: 100%;
+        order: -1;
+        flex-basis: 100%;
+        margin-bottom: 6px;
+    }
+    .filter-bar {
+        flex-wrap: wrap;
+    }
+    /* Top bar - stack if needed */
+    .top-bar {
+        padding: 10px 16px;
+        gap: 12px;
+    }
+    .top-bar h1 {
+        font-size: 1em;
+        order: 1;
+        width: 100%;
+        text-align: center;
+    }
+    .top-bar-links {
+        order: 2;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
 
 /* Main area */
 .main-area {
     padding: 16px 20px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Teams */
@@ -362,6 +583,7 @@ body {
     background: var(--bg-card);
     border-left: 1px solid var(--border);
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
 }
@@ -849,6 +1071,7 @@ body {
     gap: 6px;
     padding: 10px 14px;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     scrollbar-width: thin;
 }
 
@@ -1013,9 +1236,10 @@ body {
     </div>
 
     <!-- Sidebar -->
+    <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
     <div class="sidebar" id="sidebar">
-        <button class="sidebar-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')">
-            ▲ Draft Info
+        <button class="sidebar-toggle" onclick="toggleSidebar()">
+            📊 Analyse ▲
         </button>
         
         <div class="sidebar-tabs">
@@ -1633,8 +1857,12 @@ function pickSuggested(hid) {
 // Tooltip logic
 var tooltip = document.getElementById('hero-tooltip');
 var tooltipTimeout = null;
+var isMobileDevice = 'ontouchstart' in window;
+var mobileTooltipOpen = false;
 
 document.getElementById('hero-grid').addEventListener('mouseover', function(e) {
+    if (isMobileDevice) return; // Skip hover events on mobile
+    
     var heroEl = e.target.closest('.pick-hero');
     if (!heroEl || heroEl.classList.contains('picked')) {
         return;
@@ -1647,10 +1875,42 @@ document.getElementById('hero-grid').addEventListener('mouseover', function(e) {
 });
 
 document.getElementById('hero-grid').addEventListener('mouseout', function(e) {
+    if (isMobileDevice) return; // Skip hover events on mobile
+    
     var heroEl = e.target.closest('.pick-hero');
     if (heroEl) {
         clearTimeout(tooltipTimeout);
         tooltip.classList.remove('visible');
+    }
+});
+
+// Mobile touch handling for hero grid
+document.getElementById('hero-grid').addEventListener('touchstart', function(e) {
+    if (!isMobileDevice) return;
+    
+    var heroEl = e.target.closest('.pick-hero');
+    if (!heroEl || heroEl.classList.contains('picked')) {
+        return;
+    }
+    
+    e.preventDefault(); // Prevent default touch behavior
+    
+    if (mobileTooltipOpen && tooltip.classList.contains('visible')) {
+        // If tooltip is already open, pick the hero
+        pickHero(heroEl);
+        hideMobileTooltip();
+    } else {
+        // Show tooltip first
+        showMobileTooltip(heroEl);
+    }
+});
+
+// Close mobile tooltip when tapping outside
+document.addEventListener('touchstart', function(e) {
+    if (!isMobileDevice) return;
+    
+    if (mobileTooltipOpen && !e.target.closest('#hero-tooltip') && !e.target.closest('.pick-hero')) {
+        hideMobileTooltip();
     }
 });
 
@@ -1865,6 +2125,109 @@ function switchPanel(tab) {
     tab.classList.add('active');
     document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
 }
+
+// Mobile tooltip functions
+function showMobileTooltip(heroEl) {
+    var hid = parseInt(heroEl.dataset.id);
+    var info = HEROES[hid];
+    if (!info) return;
+    
+    var a = ANALYSIS[hid] || {};
+    var scores = heroScores[hid] || {score: 0, good: [], bad: []};
+    
+    var enemyTeam = activeTeam === 'radiant' ? 'dire' : 'radiant';
+    var enemyPicked = teams[enemyTeam].filter(h => h !== null);
+    
+    var verdictMap = {
+        'buffed': ['BUFFED', '#3fb950'],
+        'nerfed': ['NERFED', '#f85149'],
+        'rework': ['REWORK', '#d29922'],
+        'mixed': ['MIXED', '#bc8cff'],
+        'adjusted': ['ADJUSTED', '#6e7681']
+    };
+    var vInfo = verdictMap[a.v] || ['—', '#6e7681'];
+    
+    var h = '';
+    
+    // Mobile tooltip header with close button
+    h += '<div class="mobile-tt-header">';
+    h += '<button class="mobile-tt-close" onclick="hideMobileTooltip()">×</button>';
+    h += '<img class="tt-img" src="' + CDN + '/heroes/' + info.internal + '.png" onerror="this.style.display=\'none\'">';
+    h += '<div><div class="tt-name">' + info.name;
+    h += '<span class="tt-verdict" style="background:' + vInfo[1] + '22;color:' + vInfo[1] + '">' + vInfo[0] + '</span>';
+    h += '</div>';
+    h += '<div class="tt-meta">' + info.attr.toUpperCase() + ' · ' + info.attack + ' · ' + info.roles.slice(0,3).join(', ') + '</div>';
+    h += '</div></div>';
+    
+    if (enemyPicked.length > 0 && (scores.good.length > 0 || scores.bad.length > 0)) {
+        h += '<div class="tt-matchups">';
+        if (scores.good.length > 0) {
+            h += '<div class="tt-good">✓ ' + scores.good.map(m => m.wr.toFixed(0) + '% vs ' + m.name).join(', ') + '</div>';
+        }
+        if (scores.bad.length > 0) {
+            h += '<div class="tt-bad">✗ ' + scores.bad.map(m => m.wr.toFixed(0) + '% vs ' + m.name).join(', ') + '</div>';
+        }
+        h += '</div>';
+    }
+    
+    if (a.b && a.b.length > 0) {
+        h += '<div class="tt-section"><div class="tt-section-title">Buffs:</div>';
+        a.b.slice(0,2).forEach(change => {
+            h += '<div class="tt-change">• ' + change + '</div>';
+        });
+        h += '</div>';
+    }
+    
+    if (a.n && a.n.length > 0) {
+        h += '<div class="tt-section"><div class="tt-section-title">Nerfs:</div>';
+        a.n.slice(0,2).forEach(change => {
+            h += '<div class="tt-change">• ' + change + '</div>';
+        });
+        h += '</div>';
+    }
+    
+    // Add pick button for mobile
+    h += '<div class="mobile-tt-actions">';
+    h += '<button class="mobile-pick-btn" onclick="pickHeroById(' + hid + '); hideMobileTooltip();">Vælg Hero</button>';
+    h += '</div>';
+    
+    tooltip.innerHTML = h;
+    tooltip.classList.add('visible', 'mobile-tooltip');
+    mobileTooltipOpen = true;
+    
+    // Position as bottom sheet on mobile
+    tooltip.style.left = '0';
+    tooltip.style.right = '0';
+    tooltip.style.bottom = '0';
+    tooltip.style.top = 'auto';
+}
+
+function hideMobileTooltip() {
+    tooltip.classList.remove('visible', 'mobile-tooltip');
+    mobileTooltipOpen = false;
+}
+
+function pickHeroById(hid) {
+    var heroEl = document.querySelector('.pick-hero[data-id="' + hid + '"]');
+    if (heroEl && !heroEl.classList.contains('picked')) {
+        pickHero(heroEl);
+    }
+}
+
+// Sidebar toggle functionality
+function toggleSidebar() {
+    var sidebar = document.getElementById('sidebar');
+    var backdrop = document.getElementById('sidebar-backdrop');
+    sidebar.classList.toggle('open');
+    backdrop.style.display = sidebar.classList.contains('open') ? 'block' : 'none';
+}
+
+// Close sidebar when clicking backdrop
+document.getElementById('sidebar-backdrop').addEventListener('click', function() {
+    var sidebar = document.getElementById('sidebar');
+    sidebar.classList.remove('open');
+    this.style.display = 'none';
+});
 </script>
 
 <div class="hero-tooltip" id="hero-tooltip"></div>

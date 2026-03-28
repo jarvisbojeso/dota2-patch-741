@@ -1182,11 +1182,8 @@ body {
 
     <!-- Sidebar -->
     <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+    <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()">📊 Analyse ▲</button>
     <div class="sidebar" id="sidebar">
-        <button class="sidebar-toggle" onclick="toggleSidebar()">
-            📊 Analyse ▲
-        </button>
-        
         <div class="sidebar-tabs">
             <div class="sidebar-tab active" data-panel="selected" onclick="switchPanel(this)">📋 Valgt</div>
             <div class="sidebar-tab" data-panel="counters" onclick="switchPanel(this)">⚔️ Counters</div>
@@ -2195,19 +2192,18 @@ function pickHeroById(hid) {
 function toggleSidebar() {
     var sidebar = document.getElementById('sidebar');
     var backdrop = document.getElementById('sidebar-backdrop');
+    var toggle = document.getElementById('sidebar-toggle');
     var isOpen = sidebar.classList.toggle('open');
     backdrop.classList.toggle('visible', isOpen);
-    // Update toggle button text
-    var toggle = sidebar.querySelector('.sidebar-toggle');
     if (toggle) toggle.textContent = isOpen ? '📊 Analyse ▼' : '📊 Analyse ▲';
 }
 
 function closeSidebar() {
     var sidebar = document.getElementById('sidebar');
     var backdrop = document.getElementById('sidebar-backdrop');
+    var toggle = document.getElementById('sidebar-toggle');
     sidebar.classList.remove('open');
     backdrop.classList.remove('visible');
-    var toggle = sidebar.querySelector('.sidebar-toggle');
     if (toggle) toggle.textContent = '📊 Analyse ▲';
 }
 
